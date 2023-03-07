@@ -1,26 +1,34 @@
-//decides which component to render based on url
-
 import React from "react";
 import HomePage from "./HomePage";
 import AboutPage from "./AboutPage";
 import Header from "./common/Header";
 import CoursesPage from "./CoursesPage";
+import { Route, Switch } from "react-router-dom";
+import NotFoundPage from "./NotFoundPage";
 
 //always display the header, abstract logic to display right page
-function App() {
-  function getPage() {
-    const route = window.location.pathname;
-    if (route === "/courses") return <CoursesPage />;
+//use exact prop to tell react router that the path should match only if its exact
 
-    if (route === "/about") return <AboutPage />;
-    return <HomePage />;
-  }
+function App() {
   return (
     <div className="container-fluid">
       <Header />
-      {getPage()}
+      <Switch>
+        <Route path="/" exact component={HomePage} />
+        <Route path="/courses" component={CoursesPage} />
+        <Route path="/about" component={AboutPage} />
+        <Route component={NotFoundPage} />
+      </Switch>
     </div>
   );
 }
 
 export default App;
+
+// function getPage() {
+//   const route = window.location.pathname;
+//   if (route === "/courses") return <CoursesPage />;
+
+//   if (route === "/about") return <AboutPage />;
+//   return <HomePage />;
+// }
