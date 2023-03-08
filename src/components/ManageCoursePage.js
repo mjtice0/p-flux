@@ -12,12 +12,12 @@ const ManageCoursePage = (props) => {
     authorId: null,
     category: "",
   });
-//make request to API to get course and set that course using setCourse function
-//useEffect will monitor the match.params.slug value, if value changes it will re-rerun
+  //make request to API to get course and set that course using setCourse function
+  //useEffect will monitor the match.params.slug value, if value changes it will re-rerun
   useEffect(() => {
     const slug = props.match.params.slug; //pulled from the path /courses/:slug -- reference to urls second segment
     if (slug) {
-      courseApi.getCourseBySlug(slug).then( _course => setCourse(_course))
+      courseApi.getCourseBySlug(slug).then((_course) => setCourse(_course));
     }
   }, [props.match.params.slug]);
 
