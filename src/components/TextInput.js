@@ -1,9 +1,10 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 function TextInput(props) {
   //uses bootstraps error class, makes red box around error message
   let wrapperClass = "form-group";
-  if (props.error && props.error.length > 0) {
+  if (props.error.length > 0) {
     wrapperClass += " has-error";
   }
   return (
@@ -24,5 +25,18 @@ function TextInput(props) {
     </div>
   );
 }
+
+TextInput.propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  onChange: PropTypes.string.isRequired,
+  value: PropTypes.func,
+  error: PropTypes.string,
+};
+//declares default props
+TextInput.defaultProps = {
+  error: "",
+};
 
 export default TextInput;
